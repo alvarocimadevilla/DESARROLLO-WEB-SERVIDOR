@@ -12,7 +12,7 @@ El servidor de aplicaciones, según la petición que se ha realizado ejecuta un 
 
 
 ## Página principal del curso
-[VOLVER PÁGINA PRINCIPAL](https://github.com/profeMelola/DWES-00-2024-25)
+[VOLVER PÁGINA PRINCIPAL](https://github.com/alvarocimadevilla/DESARROLLO-WEB-SERVIDOR)
 
 ## Licencia
 
