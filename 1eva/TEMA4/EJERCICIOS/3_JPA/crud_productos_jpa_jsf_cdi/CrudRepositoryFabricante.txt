@@ -1,0 +1,27 @@
+Explicación de la Clase CrudRepositoryFabricante
+Paquete e Importaciones:
+
+La clase se encuentra en el paquete es.daw.web.repositories.
+Utiliza varias clases de la API de Jakarta (jakarta.persistence y jakarta.transaction) para manejar operaciones de persistencia y transacciones.
+Inyección del EntityManager:
+
+El EntityManager (em) es inyectado para realizar las operaciones sobre la base de datos. Se utiliza para gestionar las entidades, como Fabricante, de la base de datos.
+Métodos Implementados de la Interfaz CrudRepository<Fabricante>:
+
+select(): Devuelve una lista de todos los Fabricante de la base de datos, ordenados por codigo.
+selectById(int id): Devuelve un Optional<Fabricante> con el fabricante correspondiente al ID, o vacío si no existe.
+deleteById(int id): Elimina un fabricante de la base de datos usando su ID. Lanza una excepción si no se encuentra el fabricante.
+save(Fabricante t): Guarda un fabricante. Si el fabricante ya existe (basado en el ID), realiza una actualización, si no, realiza una inserción.
+Transacciones:
+
+Cada método está marcado con @Transactional, lo que asegura que las operaciones de persistencia (como em.persist(), em.merge(), y em.remove()) se realicen dentro de una transacción. Si ocurre un error, las transacciones pueden ser revertidas (aunque el manejo de rollbacks está comentado).
+Flushing y Modo de Sincronización:
+
+En algunos métodos, como selectById y deleteById, se configura el modo de sincronización del EntityManager con FlushModeType.COMMIT. Esto puede ayudar a optimizar las operaciones de lectura y escritura, asegurando que las actualizaciones a la base de datos sean sincronizadas en el momento adecuado.
+Excepciones:
+
+Se utiliza una excepción personalizada (JPAException) para manejar los posibles errores en la interacción con la base de datos, permitiendo un manejo de errores más claro y controlado.
+Resumen
+Objetivo: La clase CrudRepositoryFabricante implementa las operaciones CRUD (crear, leer, actualizar y eliminar) sobre la entidad Fabricante, utilizando JPA y EntityManager.
+Métodos Principales: select(), selectById(), deleteById() y save() manejan la persistencia de los objetos Fabricante en la base de datos.
+Transacciones: Todos los métodos están dentro de una transacción, lo que asegura que las operaciones se realicen de manera coherente

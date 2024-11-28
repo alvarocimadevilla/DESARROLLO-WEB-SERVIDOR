@@ -1,0 +1,33 @@
+Explicación Detallada de la Interfaz CrudRepository
+Paquete e Importaciones:
+
+package es.daw.web.repositories;: La interfaz está en el paquete es.daw.web.repositories, lo que sugiere que esta interfaz está destinada a definir las operaciones básicas de acceso a datos.
+import java.util.*;: Importa clases del paquete java.util, como List y Optional, que son necesarias para trabajar con colecciones de datos y resultados opcionales.
+import es.daw.web.exceptions.JPAException;: Importa la excepción personalizada JPAException, que se utiliza para manejar posibles errores al interactuar con la base de datos.
+Definición de la Interfaz CrudRepository:
+
+public interface CrudRepository<T>: Define la interfaz CrudRepository con un parámetro genérico T, lo que significa que esta interfaz puede ser utilizada para trabajar con cualquier tipo de entidad (por ejemplo, Producto, Fabricante, etc.).
+Métodos Declarados:
+
+List<T> select();: Este método recupera todos los registros de tipo T (de la base de datos) y los devuelve como una lista. La implementación concreta de este método dependerá de la tecnología de persistencia utilizada (por ejemplo, JPA, Hibernate).
+
+Optional<T> selectById(int id);: Este método obtiene un registro de tipo T mediante su ID. Utiliza Optional<T> para manejar la posibilidad de que no se encuentre un registro con ese ID, evitando así NullPointerExceptions y proporcionando una forma más segura de manejar valores nulos.
+
+void deleteById(int id) throws JPAException;: Este método elimina un registro de tipo T según su ID. Si se produce un error al intentar eliminarlo, se lanza una excepción JPAException.
+
+void save(T t);: Este método guarda un registro de tipo T en la base de datos. Si el registro ya existe (basado en el ID u otro identificador), realiza una actualización. Si no existe, realiza una inserción.
+
+Los métodos insert(T t) y update(T t) están comentados en el código original. Estos métodos podrían haber sido parte de la interfaz, pero se han dejado comentados, tal vez porque el método save(T t) es suficiente para manejar tanto inserciones como actualizaciones.
+
+Resumen de la Funcionalidad de CrudRepository
+Objetivo: La interfaz CrudRepository define las operaciones básicas de acceso a datos: selección, inserción, actualización y eliminación de registros.
+
+Parámetro Genérico T: La interfaz está diseñada para ser genérica, lo que significa que puede usarse con cualquier tipo de entidad (por ejemplo, Producto, Fabricante).
+
+Métodos Clave:
+
+select(): Obtiene todos los registros.
+selectById(int id): Obtiene un registro por su ID.
+deleteById(int id): Elimina un registro por su ID.
+save(T t): Guarda un registro, ya sea actualizando uno existente o insertando uno nuevo.
+Manejo de Excepciones: El método deleteById lanza una excepción JPAException si ocurre un error durante la eliminación, lo que permite manejar de manera más específica los errores relacionados con la base de datos

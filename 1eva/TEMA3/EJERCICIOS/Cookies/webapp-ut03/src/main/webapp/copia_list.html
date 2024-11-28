@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copia list</title>
+</head>
+<body>
+    <h1>Pruebas con listas de productos</h1>
+    <p><a href="productos.html">Mostrar lista de productos original</a></p>
+    <p>
+        <h2>Copia superficial de la lista de productos:</h2>
+        <form action="copia-lista" method="post">
+            <p>
+                Nuevo nombre:<input type="text" name="nombre" required/>
+            </p>
+            <p>
+                Posición (del 1 al 3):<input type="number" name="posicion" pattern="[0-2]{1}" required/>
+            </p>
+            <input type="submit" value="Cambiar nombre del producto por posición"/>
+        </form>
+        <h2>Copia profunda de la lista de productos:</h2>
+        <form action="copia-lista-profunda" method="post">
+            <p>
+                Nuevo nombre:<input type="text" name="nombre" required/>
+            </p>
+            <p>
+                Posición (del 1 al 3):<input type="number" name="posicion" pattern="[0-2]{1}" required/>
+            </p>
+            <input type="submit" value="Cambiar nombre del producto por posición"/>
+        </form>
+    </p>
+</body>
+</html>

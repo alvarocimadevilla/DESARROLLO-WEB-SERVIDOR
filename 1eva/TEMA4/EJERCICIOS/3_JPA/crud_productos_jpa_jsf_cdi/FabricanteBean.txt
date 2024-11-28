@@ -1,0 +1,12 @@
+Anotaciones CDI y JSF:
+
+@Model: Simplifica la declaración del bean en CDI. Equivale a usar @Named y @RequestScoped juntos, y hace que el bean esté disponible en el contexto de la capa de presentación (JSF).
+@Inject: Permite la inyección de dependencias de CDI. Aquí inyecta el repositorio CrudRepository, que manejará la persistencia de la entidad Fabricante.
+Inyección de Dependencias:
+
+CrudRepository<Fabricante> daoF: Al declarar @Inject, CDI se encarga de proporcionarnos una instancia de CrudRepository<Fabricante>, por lo que no necesitamos crear una nueva instancia de CrudRepository.
+Método getFabricantes():
+
+Este método llama al método select() del repositorio CrudRepository para obtener una lista de Fabricante. Se espera que el método select() esté definido en CrudRepository y que realice una operación de selección en la base de datos para obtener todos los registros de la entidad Fabricante.
+Resumen de Funcionalidad
+Este bean (FabricanteBean) es de ámbito de solicitud y tiene el propósito de interactuar con la capa de datos (repositorio CrudRepository) para obtener la lista de Fabricante y hacerla disponible en la capa de presentación. Cuando en la interfaz (JSF) se llame al método getFabricantes(), se obtendrá la lista de todos los fabricantes de la base de datos.

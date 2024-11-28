@@ -1,0 +1,26 @@
+Explicación Completa de la Clase Fabricante
+Paquete y Dependencias:
+
+La clase Fabricante está en el paquete es.daw.web.entities, que indica que forma parte de la capa de entidades de la aplicación.
+Se importan varias clases y anotaciones de JPA para mapear esta clase a una tabla de base de datos (@Entity, @Table, @Column, etc.) y para que la clase pueda ser serializada.
+Anotaciones JPA:
+
+@Entity: Esta anotación convierte a la clase en una entidad JPA, lo que significa que se va a mapear a una tabla de base de datos.
+@Table(name="fabricante"): Esta anotación especifica que la clase se mapeará a la tabla llamada fabricante en la base de datos.
+@Id: Marca el campo codigo como la clave primaria de la tabla.
+@GeneratedValue(strategy = GenerationType.IDENTITY): Indica que la base de datos generará automáticamente el valor para el campo codigo, utilizando una estrategia de autoincremento.
+@Column(name="codigo"): Mapea el campo codigo con la columna codigo en la tabla de la base de datos.
+@Column(name="nombre"): Mapea el campo nombre con la columna nombre en la tabla de la base de datos.
+Campos de la Clase:
+
+codigo: Es un campo de tipo int, que actúa como la clave primaria de la entidad Fabricante.
+nombre: Es un campo de tipo String que almacena el nombre del fabricante.
+Métodos Getter y Setter:
+
+Los métodos getCodigo() y setCodigo(int codigo) permiten acceder y modificar el valor del campo codigo.
+Los métodos getNombre() y setNombre(String nombre) permiten acceder y modificar el valor del campo nombre.
+Método toString():
+
+El método toString() sobrescribe el método predeterminado de Object para representar el objeto Fabricante como una cadena. Esto es útil cuando se desea imprimir el objeto o verlo en registros de log, ya que se muestra el codigo y el nombre.
+Resumen de Funcionalidad:
+La clase Fabricante es una representación de la entidad Fabricante que está mapeada a una tabla de la base de datos. Contiene dos campos: codigo (clave primaria) y nombre. Ambos campos están mapeados a columnas en la tabla de la base de datos. Los métodos getter y setter permiten acceder y modificar los valores de estos campos. La anotación @Entity indica que esta clase se usa en JPA para interactuar con la base de datos, y @GeneratedValue(strategy = GenerationType.IDENTITY) permite que el campo codigo sea autoincrementado

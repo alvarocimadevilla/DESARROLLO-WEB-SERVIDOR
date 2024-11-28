@@ -1,0 +1,28 @@
+Explicación General
+Paquete e Importaciones
+La clase está en el paquete es.daw.web.repositories, donde se agrupan los repositorios que interactúan con la base de datos.
+Se importan varias clases de la API de Jakarta, como EntityManager, Transactional, y FlushModeType, para gestionar las operaciones de persistencia y transacciones.
+Inyección del EntityManager
+Se inyecta el EntityManager (em), que es la interfaz principal para interactuar con la base de datos en JPA. Permite realizar operaciones CRUD sobre las entidades (como Producto).
+Métodos CRUD Implementados
+select(): Obtiene todos los productos de la base de datos, ordenados por código de forma descendente.
+
+Usa createQuery para ejecutar una consulta JPQL y getResultList() para obtener los resultados.
+Se configura setHint("org.hibernate.readOnly", true) para hacer la consulta solo de lectura, optimizando el rendimiento.
+selectById(int id): Busca un producto por su ID utilizando find().
+
+Retorna un Optional para manejar el caso en que el producto no sea encontrado.
+deleteById(int id): Elimina un producto de la base de datos por su ID.
+
+Primero verifica si el producto existe utilizando selectById(). Si lo encuentra, lo elimina con remove(). Si no lo encuentra, lanza una excepción.
+save(Producto t): Guarda un producto, actualizándolo si ya existe o insertándolo si es un producto nuevo.
+
+Usa merge() para actualizar un producto existente y persist() para insertar uno nuevo.
+Transacciones
+Todos los métodos están anotados con @Transactional, lo que significa que cada operación se ejecuta dentro de una transacción. Esto asegura la coherencia de los datos y que cualquier error que ocurra revierta todos los cambios realizados en la transacción.
+Modo de Sincronización y Flushing
+En el método deleteById(), se utiliza flush() para asegurarse de que la eliminación se sincronice inmediatamente con la base de datos.
+Excepciones
+La clase utiliza una excepción personalizada (JPAException) para manejar errores relacionados con las operaciones de persistencia.
+Resumen:
+La clase CrudRepositoryProducto permite realizar operaciones CRUD (crear, leer, actualizar y eliminar) sobre la entidad Producto. Cada operación está asegurada dentro de una transacción, y se utilizan técnicas de optimización como flush() y setHint() para mejorar el rendimiento en ciertas consultas

@@ -1,0 +1,30 @@
+Explicación Completa de la Clase Producto
+Paquete y Dependencias:
+
+La clase Producto está en el paquete es.daw.web.entities, lo que indica que pertenece a la capa de entidades de la aplicación.
+Se importan varias clases y anotaciones de JPA para mapear esta clase a una tabla de base de datos (@Entity, @Table, @Column, etc.) y para definir las relaciones entre entidades.
+Anotaciones JPA:
+
+@Entity: Marca la clase como una entidad JPA, lo que significa que se mapeará a una tabla en la base de datos.
+@Table(name="producto"): Especifica que esta clase se mapeará a la tabla llamada producto en la base de datos.
+@Id: Indica que el campo codigo será la clave primaria de la entidad Producto.
+@GeneratedValue(strategy = GenerationType.IDENTITY): Define que la base de datos generará automáticamente el valor para el campo codigo, utilizando una estrategia de autoincremento.
+@ManyToOne: Indica que la entidad Producto tiene una relación de "muchos a uno" con la entidad Fabricante. Esto significa que varios productos pueden estar asociados con un solo fabricante.
+@JoinColumn(name = "codigo_fabricante", referencedColumnName = "codigo", nullable = false): Especifica cómo se mapea la relación entre Producto y Fabricante. En este caso, el campo codigo_fabricante en la tabla producto se relaciona con el campo codigo en la tabla fabricante.
+Campos de la Clase:
+
+codigo: Es un campo de tipo int que actúa como la clave primaria de la entidad Producto.
+nombre: Es un campo de tipo String que almacena el nombre del producto.
+precio: Es un campo de tipo float que almacena el precio del producto.
+fabricante: Es un campo de tipo Fabricante, que define la relación de "muchos a uno" entre el producto y el fabricante.
+Métodos Getter y Setter:
+
+Los métodos getCodigo() y setCodigo(int codigo) permiten acceder y modificar el valor del campo codigo.
+Los métodos getNombre() y setNombre(String nombre) permiten acceder y modificar el valor del campo nombre.
+Los métodos getPrecio() y setPrecio(float precio) permiten acceder y modificar el valor del campo precio.
+Los métodos getFabricante() y setFabricante(Fabricante fabricante) permiten acceder y modificar el objeto Fabricante asociado al producto.
+Método toString():
+
+El método toString() sobrescribe el método predeterminado de Object para representar el objeto Producto como una cadena. Esto es útil cuando se desea imprimir el objeto o verlo en registros de log, ya que muestra el codigo, el nombre, el precio y el fabricante.
+Resumen de Funcionalidad:
+La clase Producto es una entidad JPA que representa un producto en la base de datos. Tiene tres atributos: codigo, nombre y precio, que se mapean a las columnas correspondientes en la tabla producto. Además, tiene una relación de "muchos a uno" con la entidad Fabricante, lo que significa que un producto puede estar asociado a un solo fabricante. La clase tiene métodos getter y setter para acceder y modificar estos campos, y un método toString() para representar el objeto como una cadena de texto

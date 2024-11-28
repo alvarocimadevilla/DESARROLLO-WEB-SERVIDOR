@@ -1,0 +1,42 @@
+Anotaciones y Dependencias
+@WebServlet("/productos/jpa"): Esta anotación define la ruta en la URL que accederá a este servlet. En este caso, el servlet se activa cuando se hace una solicitud a /productos/jpa.
+@Inject: Utiliza inyección de dependencias para obtener instancias de CrudRepository<Producto> y CrudRepository<Fabricante>. Esto permite que el servlet tenga acceso directo a métodos para realizar operaciones CRUD (Crear, Leer, Actualizar y Borrar) en las entidades Producto y Fabricante.
+Método doGet()
+Este método maneja las solicitudes HTTP de tipo GET. Dentro de doGet():
+
+Recoger Parámetros: Extrae datos de la solicitud que determinarán la operación a realizar. Estos parámetros incluyen:
+
+operacion: Especifica la operación CRUD a realizar (update, insert, delete).
+nombre, precio, codigo_fabricante, codigo: Representan atributos del producto que se usarán para crear o modificar registros.
+Validación del Fabricante:
+
+Mediante codigo_fabricante, el servlet intenta recuperar el fabricante asociado al producto desde la base de datos.
+Si el fabricante no se encuentra (fabricanteOpt.isEmpty()), podría manejarse mostrando un mensaje de error o implementando otra lógica según los requisitos.
+Switch de Operaciones CRUD
+El switch evalúa el parámetro operacion y determina la acción a realizar:
+
+update:
+
+Crea un objeto Producto con el nombre y codigo proporcionados.
+Llama a daoP.save(producto); para actualizar los datos en la base de datos.
+insert:
+
+Crea un nuevo objeto Producto usando el nombre, precio y el Fabricante obtenido (a través de fabricanteOpt.get()).
+Llama a daoP.save(producto); para guardar el nuevo producto en la base de datos.
+delete:
+
+Llama a daoP.deleteById(codigo);, eliminando el producto con el codigo indicado en la base de datos.
+Manejo de Excepciones
+Si ocurre un error (como problemas de conexión a la base de datos o errores SQL), el catch maneja la excepción JPAException:
+
+Registra el error con e.printStackTrace();.
+Agrega un mensaje de error como atributo en la solicitud (request.setAttribute("error", e.getMessage());).
+Redirige a error.jsp, una página específica para mostrar mensajes de error al usuario.
+Listar Productos y Redirigir a la Vista
+Después de la operación CRUD:
+
+Llama a daoP.select() para obtener la lista completa de productos actualizada.
+Establece los atributos de operacion y productos en la solicitud.
+Redirige a /reports/productos.xhtml, donde se muestra la lista de productos actualizada al usuario.
+Resumen de Funcionalidad
+Este servlet permite realizar operaciones CRUD (Actualizar, Insertar y Eliminar) sobre la entidad Producto basándose en los parámetros de la solicitud. Posteriormente, se obtiene una lista actualizada de todos los productos, que se muestra en una vista específica. En caso de errores durante las operaciones, se redirige al usuario a una página de error

@@ -1,0 +1,16 @@
+Explicación Detallada:
+Inyección y Producción de EntityManager:
+
+La clase JpaManagerCdi utiliza CDI (Context and Dependency Injection) para gestionar el ciclo de vida del EntityManager.
+A través de la anotación @Produces, el método getEntityManager() crea y ofrece un EntityManager para cada solicitud HTTP (marcada como RequestScoped), lo que asegura que cada solicitud tenga su propia instancia de EntityManager.
+El método closeEntityManager() cierra el EntityManager al finalizar la solicitud, utilizando la anotación @Disposes para que CDI lo gestione correctamente.
+Ciclo de Vida del EntityManagerFactory:
+
+Al inicio de la aplicación, se crea un único EntityManagerFactory usando el método @PostConstruct. Esto se hace solo una vez durante la vida de la aplicación.
+Justo antes de que la aplicación se cierre, el EntityManagerFactory es cerrado en el método marcado con @PreDestroy, liberando así los recursos.
+Alcance de los Beans:
+
+JpaManagerCdi tiene un alcance @ApplicationScoped, lo que significa que estará disponible durante toda la vida de la aplicación, asegurando que el EntityManagerFactory se mantenga durante toda la sesión de la aplicación.
+Por otro lado, los EntityManager producidos por el método getEntityManager() tienen un alcance @RequestScoped, es decir, se crean y destruyen con cada solicitud HTTP.
+Resumen:
+La clase JpaManagerCdi administra la creación y cierre del EntityManager de forma eficiente y segura, utilizando las anotaciones de CDI para manejar su ciclo de vida dentro de una aplicación web. Utiliza un EntityManagerFactory compartido a nivel de aplicación y crea un nuevo EntityManager para cada solicitud HTTP, asegurando así que las operaciones de base de datos estén aisladas y gestionadas correctamente para cada solicitud

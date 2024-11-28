@@ -1,0 +1,21 @@
+Anotaciones y Dependencias:
+
+@WebServlet("/fabricantes/jpa"): Define la ruta de este servlet en la URL /fabricantes/jpa.
+@Inject: Utiliza la inyección de dependencias para obtener una instancia de CrudRepository<Fabricante>.
+Método doGet():
+
+Este método maneja las solicitudes GET. Extrae parámetros de la solicitud (operacion, nombre y codigo) que determinan qué operación CRUD debe realizarse.
+Switch de Operaciones CRUD:
+
+El switch evalúa el parámetro operacion y ejecuta uno de los tres casos: update, insert o delete.
+update: Crea un objeto Fabricante con el nombre y codigo proporcionados y llama a save() para actualizarlo.
+insert: Crea un nuevo Fabricante con el nombre proporcionado y lo guarda en la base de datos.
+delete: Elimina el Fabricante que tiene el codigo proporcionado.
+Manejo de Excepciones:
+
+Si ocurre un error de JPA (como problemas de conexión o errores de SQL), el catch establece un mensaje de error y redirige a error.jsp.
+Listar Fabricantes y Redirigir a Vista:
+
+Después de la operación, se llama a select() para obtener la lista de todos los fabricantes y se redirige la solicitud a la vista (/reports/fabricantes.xhtml) para mostrar los resultados.
+Resumen de Funcionalidad
+Este servlet realiza operaciones CRUD (Actualizar, Insertar y Eliminar) sobre la entidad Fabricante basándose en parámetros de la solicitud y luego obtiene una lista actualizada de fabricantes para mostrar en una vista. En caso de error, redirige a una página de error

@@ -1,0 +1,15 @@
+Explicación Completa de la Clase JPAException
+Paquete:
+
+package es.daw.web.exceptions;: La clase está en el paquete es.daw.web.exceptions, lo que sugiere que esta clase está relacionada con la gestión de excepciones en la aplicación.
+Extensión de Exception:
+
+public class JPAException extends Exception: La clase JPAException extiende la clase Exception. Esto significa que JPAException es un tipo específico de excepción que puede ser lanzada y manejada en un bloque try-catch.
+Constructor:
+
+El constructor de la clase recibe un parámetro de tipo String llamado message, que representa el mensaje de error que se quiere asociar con la excepción.
+Dentro del constructor, se llama al constructor de la clase base Exception utilizando super(message). Este constructor de la clase Exception recibe el mensaje de error y lo pasa a la clase base, de modo que el mensaje será almacenado en la excepción y podrá ser accesible más adelante.
+Resumen de la Funcionalidad de la Clase JPAException
+La clase JPAException se utiliza para crear excepciones personalizadas relacionadas con errores en la persistencia de datos utilizando JPA.
+Al extender la clase Exception, JPAException se comporta como cualquier otra excepción, pero con la ventaja de poder diferenciar errores específicos de JPA, lo que puede ser útil para depurar o manejar errores de forma más controlada.
+El constructor permite establecer un mensaje de error que será asociado con la excepción
