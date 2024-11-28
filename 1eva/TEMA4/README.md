@@ -10,7 +10,7 @@
 ___
 
 ## Página principal del curso
-[VOLVER PÁGINA PRINCIPAL]((https://github.com/alvarocimadevilla/DESARROLLO-WEB-SERVIDOR))
+[VOLVER PÁGINA PRINCIPAL](https://github.com/alvarocimadevilla/DESARROLLO-WEB-SERVIDOR)
 
 ## Licencia
 
